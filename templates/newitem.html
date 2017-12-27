@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Catalog Application</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheet.css') }}">
+
+	</head>	
+
+	<body>
+		<header>
+			<div class="topnav">
+				<a href="{{url_for('showCategory')}}" style="color:white">Show All Categories</a>
+				{%if userLogged == 0%}
+					<a href="{{url_for('showLogin')}}" style="color:white">Login</a>
+				{%else%}
+					<a href="{{url_for('gdisconnect')}}" style="color:white">Logout</a>
+				{%endif%}
+			</div>
+		</header>
+		<h1>New Menu Item</h1>
+			<form action="#" method = "post">
+				<label for="name">Name:</label>
+				<input type ="text" maxlength="50" class="form-control" name="name"placeholder="Name of the item">
+				<label for="description">Description:</label>
+				<textarea  maxlength="250" rows="3" name="description" placeholder="Description of the item"></textarea>
+				<input type="submit" value="Create">
+			</form>
+		</div>
+	</body>
+</html>

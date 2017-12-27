@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Catalog Application</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheet.css') }}">
+
+	</head>
+
+	<body>
+		<header>
+			<h1>Category Menu</h1>
+			<div class = "topnav">
+				<a href="{{url_for('showCategory')}}" style="color: white">Show All Categories</a>
+				<a href="{{url_for('newMenuItem', category_id = category.id)}}" style="color: white">Add</a>
+				{%if userLogged == 0%}
+					<a id = "Login" href="{{url_for('showLogin')}}" style="color: white">Login</a>
+				{%else%}
+					<a id = "Logout" href="{{url_for('gdisconnect')}}" style="color: white">Logout</a>
+				{%endif%}
+			</div>
+		</header>
+
+		<h2>{{category.name}} Menu</h2>
+		<div class = "content">
+			{% if categorymenu !=[] %}	
+				<ul class = "category-list">
+					{% for c in categorymenu %}
+						<li>
+							<h3>{{c.name}}</h3>
+							<p>{{c.description}}</p>
+							{%if userLogged == 1%}
+								<a href="{{url_for('editMenuItem', category_id = category.id, menu_id = c.id)}}" style="padding:5px">Edit</a>
+								<a href="{{url_for('deleteMenuItem', category_id = category.id, menu_id = c.id)}}" style="padding:5px">Delete</a>
+							{%endif%}
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+	</body>
+</html>
